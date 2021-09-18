@@ -69,6 +69,11 @@
 
     /* Advanced Options */
     "skipLibCheck": false,                          /* Skip type checking of declaration files. */
-    "forceConsistentCasingInFileNames": true        /* Disallow inconsistently-cased references to the same file. */
+    "forceConsistentCasingInFileNames": true,       /* Disallow inconsistently-cased references to the same file. */
+    "plugins": [
+      // Provides type information of css modules to IDEs and any other tools that work with TypeScript language service plugins.
+      // https://github.com/mrmckeb/typescript-plugin-css-modules
+      { "name": "typescript-plugin-css-modules" }
+    ]
   }
 }

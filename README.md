@@ -15,6 +15,8 @@ Install all dependencies and Git hooks:
 yarn install
 ```
 
+Run **TypeScript: Select TypeScript Version** command and select the workspace version in your VSCode.
+
 Run application in development environment:
 
 ```bash

@@ -5,7 +5,7 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
-import TodoList from '@/pages/TodoList';
+import TodoView from '@/pages/TodoView';
 import './global.css';
 
 /**
@@ -16,13 +16,13 @@ const App: React.FC = () => (
   <Router>
     <Switch>
       <Route exact path="/">
-        <TodoList showType="all" />
+        <TodoView showType="all" />
       </Route>
       <Route exact path="/active">
-        <TodoList showType="active" />
+        <TodoView showType="active" />
       </Route>
       <Route exact path="/completed">
-        <TodoList showType="completed" />
+        <TodoView showType="completed" />
       </Route>
       <Redirect to="/" />
     </Switch>

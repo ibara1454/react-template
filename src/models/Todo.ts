@@ -1,4 +1,3 @@
-export default interface Todo {
-  title: string;
-  isCompleted: boolean;
+export default class Todo {
+  constructor(readonly title: string, readonly isComplete: boolean) {}
 }
