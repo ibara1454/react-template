@@ -1,11 +1,6 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from 'react-router-dom';
-import TodoView from '@/pages/TodoView';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Root from '@/pages';
 import './global.css';
 
 /**
@@ -15,16 +10,13 @@ import './global.css';
 const App: React.FC = () => (
   <Router>
     <Switch>
-      <Route exact path="/">
-        <TodoView showType="all" />
+      {/*
+        Allow optional parameter `path`
+        https://www.npmjs.com/package/path-to-regexp#optional
+      */}
+      <Route path="/:path?">
+        <Root />
       </Route>
-      <Route exact path="/active">
-        <TodoView showType="active" />
-      </Route>
-      <Route exact path="/completed">
-        <TodoView showType="completed" />
-      </Route>
-      <Redirect to="/" />
     </Switch>
   </Router>
 );

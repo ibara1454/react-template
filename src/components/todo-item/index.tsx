@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Todo from '@/models/Todo';
+import Todo from '@/models/todo';
 import style from './style.module.css';
 
 interface Props {

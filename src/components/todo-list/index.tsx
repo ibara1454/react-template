@@ -1,12 +1,13 @@
 import React, { useState, useCallback } from 'react';
 import classNames from 'classnames';
-import TodoItem from '@/components/TodoItem';
-import Todo from '@/models/Todo';
-import Footer from '@/components/Footer';
+import TodoItem from '@/components/todo-item';
+import ShowType from '@/models/show-type';
+import Todo from '@/models/todo';
+import Footer from '@/components/footer';
 import style from './style.module.css';
 
 interface Props {
-  showType: 'all' | 'active' | 'completed';
+  showType: ShowType;
 }
 
 const TodoList: React.FC<Props> = () => {
