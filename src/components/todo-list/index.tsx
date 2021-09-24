@@ -19,7 +19,7 @@ const TodoList: React.FC<Props> = () => {
   const toggleAll = useCallback(() => {
     setTodos((prev) => {
       const toggled = prev.every(({ isComplete }) => isComplete);
-      return prev.map((todo) => ({ ...todo, isComplete: !toggled }));
+      return prev.map((todo) => new Todo(todo.title, !toggled));
     });
   }, []);
 
