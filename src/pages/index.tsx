@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect, useParams } from 'react-router-dom';
 import TodoList from '@/components/todo-list';
-import ShowType from '@/models/show-type';
+import ShowType from '@/models/entities/show-type';
 import style from './style.module.css';
 
 interface Props {}

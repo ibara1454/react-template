@@ -1,27 +1,18 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Todo from '@/models/todo';
+import Todo from '@/models/entities/todo';
 import style from './style.module.css';
 
 interface Props {
   todo: Todo;
-  onChange?: (todo: Todo) => void;
+
+  onEdit?: (title: string) => void;
   onDestroy?: () => void;
+  onToggle?: () => void;
 }
 
-const TodoItem: React.FC<Props> = ({ todo, onChange }) => {
-  const { title, isComplete } = todo;
-
-  const onIsCompleteChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      const { checked } = event.target;
-      const newTodo = new Todo(title, checked);
-      onChange?.(newTodo);
-    },
-    [title, onChange],
-  );
-
+const TodoItem: React.FC<Props> = ({ todo, onEdit, onDestroy, onToggle }) => {
   const editFieldRef = useRef<HTMLInputElement>(null);
 
   const [editing, setEditing] = useState(false);
@@ -30,6 +21,10 @@ const TodoItem: React.FC<Props> = ({ todo, onChange }) => {
     setEditing(true);
   }, []);
 
+  /**
+   * Safely manipulate the DOM after `editing` state changed.
+   * Or you will focus on a DOM which is not displayed yet.
+   */
   useEffect(() => {
     if (editing) {
       const element = editFieldRef.current;
@@ -44,11 +39,10 @@ const TodoItem: React.FC<Props> = ({ todo, onChange }) => {
   const commitChange = useCallback(
     (event: React.FocusEvent<HTMLInputElement>) => {
       setEditing(false);
-      const { value } = event.currentTarget;
-      const newTodo = new Todo(value, isComplete);
-      onChange?.(newTodo);
+      const title = event.currentTarget.value;
+      onEdit?.(title);
     },
-    [isComplete, onChange],
+    [onEdit],
   );
 
   return (
@@ -59,19 +53,19 @@ const TodoItem: React.FC<Props> = ({ todo, onChange }) => {
           [style.editing]: editing,
         })}
         type="checkbox"
-        checked={isComplete}
-        onChange={onIsCompleteChange}
+        checked={todo.isComplete}
+        onChange={onToggle}
       />
       <span
         className={classNames({
           [style.view]: true,
-          [style.completed]: isComplete,
+          [style.completed]: todo.isComplete,
           [style.editing]: editing,
         })}
         onDoubleClick={shiftToEditMode}
       >
-        {title}
-        <button className={style.destroy} type="button">
+        {todo.title}
+        <button className={style.destroy} type="button" onClick={onDestroy}>
           ×
         </button>
       </span>
@@ -83,7 +77,7 @@ const TodoItem: React.FC<Props> = ({ todo, onChange }) => {
         })}
         type="text"
         onBlur={commitChange}
-        defaultValue={title}
+        defaultValue={todo.title}
       />
     </div>
   );
@@ -91,7 +85,9 @@ const TodoItem: React.FC<Props> = ({ todo, onChange }) => {
 
 TodoItem.propTypes = {
   todo: PropTypes.instanceOf(Todo).isRequired,
-  onChange: PropTypes.func.isRequired,
+  onEdit: PropTypes.func,
+  onDestroy: PropTypes.func,
+  onToggle: PropTypes.func,
 };
 
 export default TodoItem;

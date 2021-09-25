@@ -3,6 +3,10 @@ const commonRules = {
   // https://github.com/airbnb/javascript/blob/f5c14cae2ff58000cead98290b8ec4b54dda2f14/packages/eslint-config-airbnb/rules/react-a11y.js#L121-L129
   'jsx-a11y/label-has-associated-control': [2, { assert: 'either' }],
   '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+  // Disable 'react/require-default-props' which is set in `eslint-config-airbnb` config.
+  // This rule is not needed since we prefer to treat non-required props as undefinedable values.
+  // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/require-default-props.md
+  'react/require-default-props': ['off'],
 };
 
 module.exports = {
