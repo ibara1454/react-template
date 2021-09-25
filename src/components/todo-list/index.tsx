@@ -35,7 +35,7 @@ const TodoList: React.FC<Props> = ({ showType }) => {
     [add],
   );
 
-  const toggled = isAllCompleted(todos);
+  const allCompleted = isAllCompleted(todos);
 
   const filteredTodos = (() => {
     if (showType === 'active') {
@@ -58,10 +58,10 @@ const TodoList: React.FC<Props> = ({ showType }) => {
         <label
           className={classNames({
             [style.toggleAll]: true,
-            [style.toggled]: toggled,
+            [style.toggled]: allCompleted,
           })}
         >
-          <input type="checkbox" checked={toggled} onChange={toggleAll} />
+          <input type="checkbox" checked={allCompleted} onChange={toggleAll} />
         </label>
       </header>
 

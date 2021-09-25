@@ -17,9 +17,18 @@ const TodoItem: React.FC<Props> = ({ todo, onEdit, onDestroy, onToggle }) => {
 
   const [editing, setEditing] = useState(false);
 
-  const shiftToEditMode = useCallback(() => {
+  const handleShiftToEditMode = useCallback(() => {
     setEditing(true);
   }, []);
+
+  const handleChange = useCallback(
+    (event: React.FocusEvent<HTMLInputElement>) => {
+      setEditing(false);
+      const title = event.currentTarget.value;
+      onEdit?.(title);
+    },
+    [onEdit],
+  );
 
   /**
    * Safely manipulate the DOM after `editing` state changed.
@@ -35,15 +44,6 @@ const TodoItem: React.FC<Props> = ({ todo, onEdit, onDestroy, onToggle }) => {
       element.setSelectionRange(element.value.length, element.value.length);
     }
   }, [editing]);
-
-  const commitChange = useCallback(
-    (event: React.FocusEvent<HTMLInputElement>) => {
-      setEditing(false);
-      const title = event.currentTarget.value;
-      onEdit?.(title);
-    },
-    [onEdit],
-  );
 
   return (
     <div className={style.root}>
@@ -62,7 +62,7 @@ const TodoItem: React.FC<Props> = ({ todo, onEdit, onDestroy, onToggle }) => {
           [style.completed]: todo.isComplete,
           [style.editing]: editing,
         })}
-        onDoubleClick={shiftToEditMode}
+        onDoubleClick={handleShiftToEditMode}
       >
         {todo.title}
         <button className={style.destroy} type="button" onClick={onDestroy}>
@@ -76,7 +76,7 @@ const TodoItem: React.FC<Props> = ({ todo, onEdit, onDestroy, onToggle }) => {
           [style.editing]: editing,
         })}
         type="text"
-        onBlur={commitChange}
+        onBlur={handleChange}
         defaultValue={todo.title}
       />
     </div>
