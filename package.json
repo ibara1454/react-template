@@ -10,6 +10,7 @@
     "serve": "vite preview",
     "test": "exit 0",
     "lint": "eslint src",
+    "tscheck": "tsc --noEmit",
     "postinstall": "husky install"
   },
   "repository": {
@@ -66,7 +67,10 @@
     "uuid": "^8.3.2"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": "eslint --cache --fix",
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --cache --fix",
+      "tsc --noEmit"
+    ],
     "*.{js,jsx,ts,tsx,md}": "prettier --write"
   }
 }
