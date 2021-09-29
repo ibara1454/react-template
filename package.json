@@ -18,7 +18,7 @@
     "url": "git+https://github.com/ibara1454/react-template.git"
   },
   "author": "Chiajun Wang <ibara1454@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/ibara1454/react-template/issues"
   },
