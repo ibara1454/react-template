@@ -1,18 +1,15 @@
 .root {
-  position: relative;
   display: flex;
-  height: 60px;
+  position: relative;
   align-items: center;
+  height: 60px;
 }
 
 .toggle {
   width: 40px;
-  vertical-align: middle;
 
   /* auto, since non-WebKit browsers doesn't support input styling */
   border: none; /* Mobile Safari */
-  -webkit-appearance: none;
-  appearance: none;
 
   /*
 		Firefox requires `#` to be escaped - https://bugzilla.mozilla.org/show_bug.cgi?id=922433
@@ -21,6 +18,9 @@
   background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23ededed%22%20stroke-width%3D%223%22/%3E%3C/svg%3E');
   background-repeat: no-repeat;
   background-position: center;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .toggle:checked {
@@ -32,12 +32,12 @@
 }
 
 .view {
-  word-break: break-all;
-  padding: 15px 20px;
-  flex: 1;
   display: inline-block;
-  line-height: 1.2;
+  flex: 1;
+  padding: 15px 20px;
   transition: color 0.4s;
+  line-height: 1.2;
+  word-break: break-all;
 }
 
 .view.completed {
@@ -50,20 +50,20 @@
 }
 
 .edit {
-  margin: 0;
   display: none;
+  box-sizing: border-box;
   flex: 1;
+  margin: 0;
   padding: 12px 19px;
-  font-size: 24px;
-  font-family: inherit;
-  font-weight: inherit;
-  line-height: 1.4em;
-  color: inherit;
   border: 1px solid #999;
   box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
-  box-sizing: border-box;
+  color: inherit;
+  font-family: inherit;
+  font-size: 24px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-weight: inherit;
+  line-height: 1.4em;
 }
 
 .edit.editing {
@@ -73,22 +73,22 @@
 .destroy {
   display: none;
   position: absolute;
-  margin: auto;
   top: 0;
-  bottom: 0;
   right: 10px;
+  bottom: 0;
   width: 40px;
   height: 40px;
-  font-size: 30px;
+  margin: auto;
+  transition: color 0.2s ease-out;
   border: 0;
   background: none;
-  vertical-align: baseline;
   color: #cc9a9a;
-  transition: color 0.2s ease-out;
-  -webkit-appearance: none;
-  appearance: none;
+  font-size: 30px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  vertical-align: baseline;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .destroy:hover {
