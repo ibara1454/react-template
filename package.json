@@ -9,7 +9,8 @@
     "build": "vite build",
     "serve": "vite preview",
     "test": "exit 0",
-    "lint": "eslint src",
+    "lint:js": "eslint src",
+    "lint:css": "stylelint src",
     "tscheck": "tsc --noEmit",
     "postinstall": "husky install"
   },

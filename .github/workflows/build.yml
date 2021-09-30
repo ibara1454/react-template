@@ -24,8 +24,14 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Run lint
-        run: yarn lint
+      - name: Run linter on JavaScript/TypeScript files
+        run: yarn lint:js
+
+      - name: Run linter on CSS files
+        run: yarn lint:css
+
+      - name: Run type checker
+        run: yarn tscheck
 
       - name: Run test
         run: yarn test
