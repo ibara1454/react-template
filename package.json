@@ -65,21 +65,5 @@
     "react-dom": "^17.0.2",
     "react-router-dom": "^5.2.0",
     "uuid": "^8.3.2"
-  },
-  "lint-staged": {
-    "*.{ts,tsx}": [
-      "prettier --write",
-      "eslint --cache --fix",
-      "tsc --noEmit"
-    ],
-    "*.{js,jsx}": [
-      "prettier --write",
-      "eslint --cache --fix"
-    ],
-    "*.css": [
-      "prettier --write",
-      "stylelint --fix"
-    ],
-    "*.{md}": "prettier --write"
   }
 }
