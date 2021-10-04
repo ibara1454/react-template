@@ -9,7 +9,7 @@ import {
   filterCompleted,
 } from '@/models/todo';
 import ShowType from '@/models/entities/show-type';
-import Todo from '@/models/entities/todo';
+import { create } from '@/models/entities/todo';
 import Footer from '@/components/footer';
 import style from './style.module.css';
 
@@ -28,7 +28,7 @@ const TodoList: React.FC<Props> = ({ showType }) => {
       const target = event.currentTarget;
       const title = target.value;
       // Create new todo item and append it to the end of list.
-      add(Todo.create(title));
+      add(create(title));
       // Clear the input field.
       target.value = '';
     },
@@ -70,7 +70,8 @@ const TodoList: React.FC<Props> = ({ showType }) => {
           {filteredTodos.map((todo) => (
             <li key={todo.id}>
               <TodoItem
-                todo={todo}
+                title={todo.title}
+                isComplete={todo.isComplete}
                 onEdit={(title) => {
                   update(todo, title);
                 }}

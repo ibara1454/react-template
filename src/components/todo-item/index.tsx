@@ -1,18 +1,24 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Todo from '@/models/entities/todo';
 import style from './style.module.css';
 
 interface Props {
-  todo: Todo;
+  title: string;
+  isComplete: boolean;
 
   onEdit?: (title: string) => void;
   onDestroy?: () => void;
   onToggle?: () => void;
 }
 
-const TodoItem: React.FC<Props> = ({ todo, onEdit, onDestroy, onToggle }) => {
+const TodoItem: React.FC<Props> = ({
+  title,
+  isComplete,
+  onEdit,
+  onDestroy,
+  onToggle,
+}) => {
   const editFieldRef = useRef<HTMLInputElement>(null);
 
   const [editing, setEditing] = useState(false);
@@ -24,8 +30,8 @@ const TodoItem: React.FC<Props> = ({ todo, onEdit, onDestroy, onToggle }) => {
   const handleChange = useCallback(
     (event: React.FocusEvent<HTMLInputElement>) => {
       setEditing(false);
-      const title = event.currentTarget.value;
-      onEdit?.(title);
+      const { value } = event.currentTarget;
+      onEdit?.(value);
     },
     [onEdit],
   );
@@ -53,18 +59,18 @@ const TodoItem: React.FC<Props> = ({ todo, onEdit, onDestroy, onToggle }) => {
           [style.editing]: editing,
         })}
         type="checkbox"
-        checked={todo.isComplete}
+        checked={isComplete}
         onChange={onToggle}
       />
       <span
         className={classNames({
           [style.view]: true,
-          [style.completed]: todo.isComplete,
+          [style.completed]: isComplete,
           [style.editing]: editing,
         })}
         onDoubleClick={handleShiftToEditMode}
       >
-        {todo.title}
+        {title}
         <button className={style.destroy} type="button" onClick={onDestroy}>
           ×
         </button>
@@ -77,14 +83,15 @@ const TodoItem: React.FC<Props> = ({ todo, onEdit, onDestroy, onToggle }) => {
         })}
         type="text"
         onBlur={handleChange}
-        defaultValue={todo.title}
+        defaultValue={title}
       />
     </div>
   );
 };
 
 TodoItem.propTypes = {
-  todo: PropTypes.instanceOf(Todo).isRequired,
+  title: PropTypes.string.isRequired,
+  isComplete: PropTypes.bool.isRequired,
   onEdit: PropTypes.func,
   onDestroy: PropTypes.func,
   onToggle: PropTypes.func,
