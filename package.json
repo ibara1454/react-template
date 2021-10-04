@@ -9,7 +9,7 @@
     "serve": "vite preview",
     "test": "exit 0",
     "prettier": "prettier -c src",
-    "lint:js": "eslint src",
+    "lint:js": "eslint .",
     "lint:css": "stylelint src",
     "tscheck": "tsc --noEmit",
     "postinstall": "husky install"
