@@ -20,7 +20,7 @@ module.exports = {
     // Update the package.json version and
     // publish the package on the npm registry (only for public repo)
     // https://github.com/semantic-release/npm/tree/d5cab62ee88e38f2b866feda5c7af8fce95c0173
-    '@semantic-release/npm',
+    ['@semantic-release/npm', { npmPublish: false }],
     // Publish a GitHub release and add a comment to GitHub issues and pull requests resolved
     // in the release.
     // https://github.com/semantic-release/github/tree/4dfcb504054d49d8438134afa2836f125ce8c7b5
