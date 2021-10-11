@@ -2,13 +2,37 @@ import { useCallback, useState } from 'react';
 import type { Todo } from '@/models/entities/todo';
 import { copy } from '@/models/entities';
 
+/**
+ * This custom hook returns the current state of todo items and provides
+ * manipulations of them.
+ * @param initState - The initial todo items.
+ * @example Example for toggle all todo items:
+ * ```tsx
+ * export function TodoComponent() {
+ *   const { todos, toggleAll } useTodo();
+ *
+ *   return <div>
+ *     <button onClick={toggleAll} />
+ *     <TodoList data={todos} />
+ *   </div>;
+ * }
+ * ```
+ */
 export const useTodo = (initState: Todo[] = []) => {
   const [todos, setTodos] = useState<Todo[]>(initState);
 
+  /**
+   * Append the given todo item to current todo item array.
+   * @param todo - The todo item to insert.
+   */
   const add = useCallback((todo: Todo) => {
     setTodos((prev) => [...prev, todo]);
   }, []);
 
+  /**
+   * Toggle the `isComplete` value of the specified todo item.
+   * @param todo - The specified todo item.
+   */
   const toggle = useCallback((todo: Todo) => {
     setTodos((prev) =>
       prev.map((value) => {
@@ -20,6 +44,9 @@ export const useTodo = (initState: Todo[] = []) => {
     );
   }, []);
 
+  /**
+   * Toggle the `isComplete` value for all todo items.
+   */
   const toggleAll = useCallback(() => {
     setTodos((prev) => {
       const toggled = prev.every(({ isComplete }) => isComplete);
@@ -27,14 +54,26 @@ export const useTodo = (initState: Todo[] = []) => {
     });
   }, []);
 
+  /**
+   * Remove all todo items which are completed.
+   */
   const clearCompleted = useCallback(() => {
     setTodos((prev) => prev.filter((todo) => !todo.isComplete));
   }, []);
 
+  /**
+   * Remove the specific todo item from current todo item array.
+   * @param todo - The todo item to remove.
+   */
   const destroy = useCallback((todo: Todo) => {
     setTodos((prev) => prev.filter((value) => value !== todo));
   }, []);
 
+  /**
+   * Update the specific todo item by the given title.
+   * @param todo - The specific todo item.
+   * @param title - The title to overwrite.
+   */
   const update = useCallback((todo: Todo, title: string) => {
     setTodos((prev) =>
       prev.map((value) => {
