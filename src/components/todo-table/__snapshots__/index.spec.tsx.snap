@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TodoTable should renders correctly 1`] = `
+Array [
+  <div
+    className="root"
+  >
+    <div>
+      <header
+        className="header"
+      >
+        <input
+          className="newTodo"
+          onKeyDown={[Function]}
+          placeholder="What needs to be done?"
+        />
+        <label
+          className="toggleAll toggled"
+        >
+          <input
+            checked={true}
+            onChange={[Function]}
+            type="checkbox"
+          />
+        </label>
+      </header>
+      <section
+        className="main"
+      >
+        <ul
+          className="todoList"
+        />
+      </section>
+    </div>
+    <footer
+      className="root"
+    >
+      <span
+        className="count"
+      >
+        <strong>
+          0 left
+        </strong>
+      </span>
+      <ul
+        className="filters"
+      >
+        <li>
+          <a
+            aria-current="page"
+            className="link selected"
+            href="/"
+            onClick={[Function]}
+            style={Object {}}
+          >
+            All
+          </a>
+        </li>
+        <li>
+          <a
+            aria-current={null}
+            className="link"
+            href="/active"
+            onClick={[Function]}
+          >
+            Active
+          </a>
+        </li>
+        <li>
+          <a
+            aria-current={null}
+            className="link"
+            href="/completed"
+            onClick={[Function]}
+          >
+            Completed
+          </a>
+        </li>
+      </ul>
+    </footer>
+  </div>,
+  ",",
+]
+`;

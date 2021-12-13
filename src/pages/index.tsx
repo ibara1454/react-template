@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect, useParams } from 'react-router-dom';
-import TodoList from '@/components/todo-list';
+import TodoTable from '@/components/todo-table';
 import ShowType from '@/models/entities/show-type';
 import style from './style.module.css';
 
@@ -33,7 +33,7 @@ const Root: React.FC<Props> = () => {
   return (
     <div>
       <h1 className={style.title}>todos</h1>
-      <TodoList showType={showType} />
+      <TodoTable showType={showType} />
     </div>
   );
 };

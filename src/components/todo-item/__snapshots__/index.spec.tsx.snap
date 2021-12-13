@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TodoItem should renders correctly 1`] = `
+<div
+  className="root"
+>
+  <input
+    checked={false}
+    className="toggle"
+    type="checkbox"
+  />
+  <span
+    className="view"
+    onDoubleClick={[Function]}
+  >
+    title
+    <button
+      className="destroy"
+      type="button"
+    >
+      ×
+    </button>
+  </span>
+  <input
+    className="edit"
+    defaultValue="title"
+    onBlur={[Function]}
+    type="text"
+  />
+</div>
+`;

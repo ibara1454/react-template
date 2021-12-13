@@ -10,7 +10,6 @@ import {
 } from '@/models/todo';
 import ShowType from '@/models/entities/show-type';
 import { create } from '@/models/entities/todo';
-import Footer from '@/components/footer';
 import style from './style.module.css';
 
 interface Props {
@@ -48,7 +47,7 @@ const TodoList: React.FC<Props> = ({ showType }) => {
   })();
 
   return (
-    <div className={style.root}>
+    <div>
       <header className={style.header}>
         <input
           placeholder="What needs to be done?"
@@ -81,7 +80,6 @@ const TodoList: React.FC<Props> = ({ showType }) => {
             </li>
           ))}
         </ul>
-        <Footer />
       </section>
     </div>
   );
